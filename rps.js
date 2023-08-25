@@ -14,12 +14,25 @@ let  score= JSON.parse(localStorage.getItem('score'));
         tie : 0,
       }
     } 
-
-    
     updateScoreElement();
-    
 
     
+    let isAutoPlaying = false;
+    let intervalId; 
+    
+    
+    function autoPlay() {
+      if (!isAutoPlaying) {
+       intervalId = setInterval(function (){
+        const playermove = pickComputerMove()
+        playgame(playermove);
+      },1000);
+      isAutoPlaying = true;
+    }else {
+      clearInterval(intervalId);
+      isAutoPlaying = false;
+    }
+    }
     
 
     function playgame(playermove){

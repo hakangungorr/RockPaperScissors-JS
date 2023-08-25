@@ -4,11 +4,12 @@ body{
   font-family: Arial, sans-serif;
   font-weight: bold;
   margin: 0;
+  box-sizing: border-box;
   
 }
 
 
-button{
+.button-container button{
   
   cursor:pointer;
   height: 100px;
@@ -37,21 +38,24 @@ p , h1{
 p{
   font-size: 20px;
 }
+.lastbuttonscontainer{
+  
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ height: 100vh;
+ gap: 20px;
 
-.reset-button{
-  border:none;
-  cursor:pointer;
-  height: 100px;
-  width: 100px;
-  border-radius: 50px;
+}
+
+.reset-button, .autoplaybtn{
+  padding: 10px 20px;
   background-color: transparent;
-  color:white;
-  border: 1px solid white;
-  font-size: 20px;
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  color: #fff;
+  border: 1px solid #ffff ;
+  cursor: pointer;
+  margin-left: 60px;
+  
 }
 
 
