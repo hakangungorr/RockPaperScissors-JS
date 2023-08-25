@@ -20,10 +20,10 @@ let  score= JSON.parse(localStorage.getItem('score'));
     let isAutoPlaying = false;
     let intervalId; 
     
-    
+    // const autoPLay = () => {}  Arrow Function 
     function autoPlay() {
       if (!isAutoPlaying) {
-       intervalId = setInterval(function (){
+       intervalId = setInterval( ()=>{
         const playermove = pickComputerMove()
         playgame(playermove);
       },1000);
@@ -33,7 +33,37 @@ let  score= JSON.parse(localStorage.getItem('score'));
       isAutoPlaying = false;
     }
     }
+
+    buttonRock=document.querySelector('.js-rock-button')
+    buttonPaper=document.querySelector('.js-paper-button') 
+    buttonScissors=document.querySelector('.js-scissors-button')
+   /*  buttonRock.addEventListener('click',playgame('rock'))  //playgame('rock') is common mistakes dont do that */ 
+   buttonRock.addEventListener('click',()=>{
+    playgame('rock')
+   }) 
+   buttonPaper.addEventListener('click',()=>{
+    playgame('paper')
+   }) 
+   buttonScissors.addEventListener('click',()=>{
+    playgame('scissors')
+   }) 
+
+   document.body.addEventListener('keydown',(event)=>{
+    if(event.key === 'r'){
+      playgame('rock')
+
+    }else if(event.key === 'p'){
+      playgame('paper')
+    }else if(event.key === 's'){
+      playgame('scissors')
+    }else if(event.key ==='Enter'){
+      autoPlay();
+    }
+  }) 
+
     
+
+
 
     function playgame(playermove){
       const computerMove = pickComputerMove();
