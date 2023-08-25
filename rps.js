@@ -23,7 +23,7 @@ let  score= JSON.parse(localStorage.getItem('score'));
     // const autoPLay = () => {}  Arrow Function 
     function autoPlay() {
       if (!isAutoPlaying) {
-       intervalId = setInterval( ()=>{
+       intervalId = setInterval(function(){
         const playermove = pickComputerMove()
         playgame(playermove);
       },1000);
@@ -33,7 +33,7 @@ let  score= JSON.parse(localStorage.getItem('score'));
       isAutoPlaying = false;
     }
     }
-
+    buttonAutoPlay = document.querySelector('.js-autoplay-button')
     buttonRock=document.querySelector('.js-rock-button')
     buttonPaper=document.querySelector('.js-paper-button') 
     buttonScissors=document.querySelector('.js-scissors-button')
@@ -47,6 +47,9 @@ let  score= JSON.parse(localStorage.getItem('score'));
    buttonScissors.addEventListener('click',()=>{
     playgame('scissors')
    }) 
+
+   buttonAutoPlay.addEventListener('click',()=>{
+    autoPlay();})
 
    document.body.addEventListener('keydown',(event)=>{
     if(event.key === 'r'){
