@@ -20,6 +20,8 @@ let  score= JSON.parse(localStorage.getItem('score'));
     let isAutoPlaying = false;
     let intervalId; 
     
+  
+
     // const autoPLay = () => {}  Arrow Function 
     function autoPlay() {
       if (!isAutoPlaying) {
@@ -28,18 +30,35 @@ let  score= JSON.parse(localStorage.getItem('score'));
         playgame(playermove);
       },1000);
       isAutoPlaying = true;
+      buttonAutoPlay.innerHTML='Stop playing';
     }else {
       clearInterval(intervalId);
       isAutoPlaying = false;
+      buttonAutoPlay.innerHTML='Auto Play';
     }
     }
+    buttonReset = document.querySelector('.reset-button')
     buttonAutoPlay = document.querySelector('.js-autoplay-button')
     buttonRock=document.querySelector('.js-rock-button')
     buttonPaper=document.querySelector('.js-paper-button') 
     buttonScissors=document.querySelector('.js-scissors-button')
    /*  buttonRock.addEventListener('click',playgame('rock'))  //playgame('rock') is common mistakes dont do that */ 
+   buttonReset.addEventListener('click',()=>{
+     
+    score.wins =0;
+    score.losses = 0;
+    score.tie = 0;
+    localStorage.removeItem('score');
+    updateScoreElement();
+    console.log(score);
+  
+    document.querySelector('.js-moves').innerHTML='';
+    document.querySelector('.js-result').innerHTML='';
+
+   })
+   
    buttonRock.addEventListener('click',()=>{
-    playgame('rock')
+   playgame('rock')
    }) 
    buttonPaper.addEventListener('click',()=>{
     playgame('paper')
@@ -49,9 +68,11 @@ let  score= JSON.parse(localStorage.getItem('score'));
    }) 
 
    buttonAutoPlay.addEventListener('click',()=>{
-    autoPlay();})
+    autoPlay();
+   })
 
    document.body.addEventListener('keydown',(event)=>{
+    
     if(event.key === 'r'){
       playgame('rock')
 
@@ -59,12 +80,20 @@ let  score= JSON.parse(localStorage.getItem('score'));
       playgame('paper')
     }else if(event.key === 's'){
       playgame('scissors')
-    }else if(event.key ==='Enter'){
+    }else if(event.key ==='a'){
       autoPlay();
-    }
-  }) 
+    }else if(event.key === 'Backspace'){
+      score.wins =0;
+    score.losses = 0;
+    score.tie = 0;
+    localStorage.removeItem('score');
+    updateScoreElement();
+    console.log(score);
+  
+    document.querySelector('.js-moves').innerHTML='';
+    document.querySelector('.js-result').innerHTML='';
 
-    
+  }})
 
 
 
